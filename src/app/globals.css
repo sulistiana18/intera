@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global section spacing */
+section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Slick carousel customization */
+.slick-dots {
+  color: #1A21BC;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: #1A21BC !important;
+}
+
+.slick-dots li button:before {
+  font-size: 11px !important;
+}
+
+@keyframes blink-red-black {
+  0% {
+    color: #ef4444; /* red */
+  }
+  50% {
+    color: #111827; /* black / dark */
+  }
+  100% {
+    color: #ef4444;
+  }
+}
+
+.blink-urgent {
+  animation: blink-red-black 1s infinite;
+}
