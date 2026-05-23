@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Logo = () => {
   return (
-    <Link href="/" className="flex items-center">
+    <Link href="/intera" className="flex items-center">
       <Image
         src="/images/logo/intera.svg"
         alt="logo"
