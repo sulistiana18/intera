@@ -79,23 +79,11 @@ const Hero = () => {
   return (
     <section
       id="home-section"
-      className="relative overflow-hidden bg-[#FAFBFF]"
+      className="relative overflow-hidden bg-gradient-to-b from-[#F8FAFF] to-white"
     >
 
       {/* 🌫️ VERY SOFT TOP BLUE AMBIENT (NO HARD GLOW) */}
-      <div className="pointer-events-none absolute left-1/2 top-[-200px] h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#0B3D91]/10 blur-[200px]" />
-
-      {/* 🌫️ LEFT MICRO BLUE HINT */}
-      <div className="pointer-events-none absolute left-[-150px] top-40 h-[450px] w-[450px] rounded-full bg-[#00A3E0]/8 blur-[180px]" />
-
-      {/* 🌫️ RIGHT MICRO BLUE HINT */}
-      <div className="pointer-events-none absolute right-[-150px] top-20 h-[500px] w-[500px] rounded-full bg-[#1E5EFF]/6 blur-[200px]" />
-
-      {/* 🌫️ BOTTOM TRANSITION LAYER (BLENDS TO WHITE PAGE BELOW) */}
-      <div className="pointer-events-none absolute bottom-[-250px] left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-[#0B3D91]/5 blur-[220px]" />
-
-      {/* 🌫️ ULTRA SOFT WHITE LIFT (REMOVES HARSH CONTRAST) */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-[#FAFBFF]" />
+      <div className="pointer-events-none absolute left-1/2 top-[-200px] h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#0B3D91]/5 blur-[160px]" />
 
       <div className="relative z-10 container mx-auto lg:max-w-screen-xl md:max-w-screen-md px-4 pt-5">
 
@@ -105,18 +93,26 @@ const Hero = () => {
           <div className="col-span-6 flex flex-col gap-6">
 
             {/* TITLE */}
-            <h1 className="text-midnight_text text-4xl sm:text-5xl font-semibold leading-tight">
-              Join Pertamina Internship & Build Your Future Career
-            </h1>
+            <div className="text-midnight_text">
+              <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.05]">
+                Pertamina Internship
+              </h1>
+
+              <h2 className="text-xl sm:text-2xl font-semibold text-[#0B3D91] mt-2 tracking-wide">
+                Build Your Future Career
+              </h2>
+            </div>
 
             {/* SUBTITLE */}
-            <p className="text-black/70 text-lg">
+            <p className="text-black/60 text-lg leading-relaxed max-w-md mt-3">
               Gain real industry experience, learn directly from professionals, and grow your skills in a real working environment.
             </p>
 
             {/* INFO CARD */}
-            <div className="flex">
-              <div className="bg-white backdrop-blur-xl border border-white rounded-2xl shadow-[0_20px_60px_rgba(11,61,145,0.10)] px-6 py-5 flex items-center gap-8">
+            <div className="mt-6">
+              <div className="flex items-center gap-6 px-6 py-5 rounded-2xl 
+              bg-white/70 backdrop-blur-xl border border-[#0B3D91]/10 
+              shadow-[0_20px_60px_rgba(11,61,145,0.08)] w-fit">
 
                 {/* NEXT BATCH */}
                 <div className="flex items-center gap-3">
@@ -126,28 +122,25 @@ const Hero = () => {
 
                   <div>
                     <p className="text-xs text-gray-500">Next Batch</p>
-                    <p className="font-semibold text-black whitespace-nowrap">
-                      {batch?.name} ({batch && getMonthName(batch.startMonth)})
+                    <p className="font-semibold text-black">
+                      {batch?.name} <span className="text-black/60">({batch && getMonthName(batch.startMonth)})</span>
                     </p>
                   </div>
                 </div>
 
                 {/* DIVIDER */}
-                <div className="w-px h-10 bg-gray-200" />
+                <div className="w-px h-10 bg-gray-200/70" />
 
                 {/* COUNTDOWN */}
                 <div className="flex items-center gap-3">
                   <div className="bg-[#FFECEC] p-3 rounded-full">
-                    <Icon icon="solar:clock-circle-bold" className="text-red-500 text-xl" />
+                    <Icon icon="solar:clock-circle-bold" className="text-[#E31E24] text-xl" />
                   </div>
 
                   <div>
-                    <p className="text-xs text-gray-500">
-                      Registration closes in
-                    </p>
-
-                    <p className="font-semibold text-lg text-black whitespace-nowrap blink-urgent">
-                      {daysLeft !== null ? `${daysLeft} DAYS LEFT` : "-"}
+                    <p className="text-xs text-gray-500">Registration closes</p>
+                    <p className="font-bold text-[#E31E24] tracking-wide">
+                      {daysLeft !== null ? `${daysLeft} days left` : "-"}
                     </p>
                   </div>
                 </div>
@@ -157,10 +150,10 @@ const Hero = () => {
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="col-span-6 flex justify-center relative">
+          <div className="col-span-6 flex justify-center relative scale-[0.95]">
 
             {/* IMAGE GLOW FRAME */}
-            <div className="absolute h-[420px] w-[420px] rounded-full bg-[#0B3D91]/20 blur-[120px]" />
+            <div className="absolute h-[350px] w-[350px] rounded-full bg-[#0B3D91]/10 blur-[100px]" />
 
             <Image
               src={getDataPath("/images/banner/intera-1.gif")}
@@ -168,7 +161,7 @@ const Hero = () => {
               width={600}
               height={400}
               priority
-              className="relative z-10 drop-shadow-[0_30px_60px_rgba(11,61,145,0.25)]"
+              className="relative z-10 drop-shadow-[0_30px_60px_rgba(11,61,145,0.20)]"
             />
           </div>
 
