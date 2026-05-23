@@ -39,3 +39,15 @@ section {
 .blink-urgent {
   animation: blink-red-black 1s infinite;
 }
+
+@keyframes blink-red-black {
+  0% {
+    color: #000000;
+  }
+  50% {
+    color: #E31E24;
+  }
+  100% {
+    color: #000000;
+  }
+}
