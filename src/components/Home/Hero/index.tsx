@@ -101,7 +101,7 @@ const Hero = () => {
           <div className="flex justify-center relative scale-[0.95]">
             <div className="absolute h-[350px] w-[350px] rounded-full bg-[#0B3D91]/10 blur-[100px]" />
             <Image
-              src={getDataPath("/images/banner/intera-1.gif")}
+              src={getDataPath("/images/banner/intera-v2.gif")}
               alt="hero image"
               width={600}
               height={400}
@@ -114,10 +114,10 @@ const Hero = () => {
 
             <div>
               <h1 className="text-4xl font-bold tracking-tight leading-[1.05]">
-                Pertamina Internship
+                Internship Partner
               </h1>
 
-              <h2 className="text-xl font-semibold text-[#0B3D91] mt-2 tracking-wide">
+              <h2 className="text-2xl font-semibold text-[#0B3D91] mt-2 tracking-wide">
                 Build Your Future Career
               </h2>
             </div>
@@ -178,7 +178,7 @@ const Hero = () => {
 
             <div className="text-midnight_text">
               <h1 className="text-6xl font-bold tracking-tight leading-[1.05]">
-                Pertamina Internship
+                Internship Partner
               </h1>
 
               <h2 className="text-2xl font-semibold text-[#0B3D91] mt-2 tracking-wide">
@@ -235,7 +235,7 @@ const Hero = () => {
             <div className="absolute h-[350px] w-[350px] rounded-full bg-[#0B3D91]/10 blur-[100px]" />
 
             <Image
-              src={getDataPath("/images/banner/intera-1.gif")}
+              src={getDataPath("/images/banner/intera-v2.gif")}
               alt="hero image"
               width={600}
               height={400}

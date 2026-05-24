@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <Link href="/" className="flex items-center">
       <Image
-        src="/images/logo/intera.svg"
+        src="/images/logo/intera-v2.svg"
         alt="logo"
         width={220}
         height={80}
