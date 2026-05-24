@@ -177,7 +177,7 @@ const Hero = () => {
           <div className="col-span-6 flex flex-col gap-6">
 
             <div className="text-midnight_text">
-              <h1 className="text-6xl font-bold tracking-tight leading-[1.05]">
+              <h1 className="text-5xl font-bold tracking-tight leading-[1.05]">
                 Internship Partner
               </h1>
 
