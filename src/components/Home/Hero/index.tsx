@@ -180,7 +180,7 @@ const Hero = () => {
         {/* DESKTOP */}
         <div className="hidden lg:grid grid-cols-12 items-center gap-10">
 
-          <div className="col-span-6 flex flex-col gap-6">
+          <div className="col-span-6 flex flex-col gap-6 lg:pl-8">
 
             <div className="text-midnight_text">
               <h1 className="text-5xl font-bold tracking-tight leading-[1.05]">
