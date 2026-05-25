@@ -127,7 +127,7 @@ const Hero = () => {
             </p>
 
             {/* CARD */}
-            <div className="flex items-center gap-6 px-6 py-5 rounded-2xl 
+            <div className="flex items-center justify-between gap-4 px-4 py-4 rounded-2xl 
               bg-white/70 backdrop-blur-xl border border-[#0B3D91]/10 
               shadow-[0_20px_60px_rgba(11,61,145,0.08)] w-fit">
 
@@ -136,27 +136,35 @@ const Hero = () => {
                   <Icon icon="solar:calendar-bold" className="text-[#0B3D91] text-xl" />
                 </div>
 
-                <div>
-                  <p className="text-xs text-gray-500">Next Batch</p>
-                  <p className="font-semibold text-black">
-                    {batch?.name} <span className="text-black/60">
-                      ({batch && getMonthName(batch.startMonth)})
-                    </span>
+                <div className="flex flex-col">
+                  <p className="text-[11px] text-gray-500 leading-none mb-1">
+                    Next Batch
+                  </p>
+
+                  <p className="font-semibold text-black text-sm leading-tight">
+                    {batch?.name}
+                  </p>
+
+                  <p className="text-black/60 text-xs leading-tight">
+                    ({batch && getMonthName(batch.startMonth)})
                   </p>
                 </div>
               </div>
 
-              <div className="w-px h-10 bg-gray-200/70" />
+              <div className="w-px h-12 bg-gray-200/70 shrink-0" />
 
               <div className="flex items-center gap-3">
                 <div className="bg-[#FFECEC] p-3 rounded-full">
                   <Icon icon="solar:clock-circle-bold" className="text-[#E31E24] text-xl" />
                 </div>
 
-                <div>
-                  <p className="text-xs text-gray-500">Registration closes</p>
+                <div className="flex flex-col">
+                  <p className="text-[11px] text-gray-500 leading-none mb-1">
+                    Registration closes
+                  </p>
+
                   <p
-                    className="font-bold tracking-wide blink-urgent"
+                    className="font-bold text-sm leading-tight blink-urgent"
                     style={{
                       color: blink ? "#000000" : "#E31E24"
                     }}
