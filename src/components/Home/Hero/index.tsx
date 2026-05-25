@@ -129,7 +129,7 @@ const Hero = () => {
             {/* CARD */}
             <div className="flex items-center justify-between gap-4 px-4 py-4 rounded-2xl 
               bg-white/70 backdrop-blur-xl border border-[#0B3D91]/10 
-              shadow-[0_20px_60px_rgba(11,61,145,0.08)] w-fit">
+              shadow-[0_20px_60px_rgba(11,61,145,0.08)] w-full">
 
               <div className="flex items-center gap-3">
                 <div className="bg-[#E8F1FF] p-3 rounded-full">
