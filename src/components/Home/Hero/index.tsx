@@ -103,8 +103,8 @@ const Hero = () => {
             <Image
               src={getDataPath("/images/banner/intera-v2.gif")}
               alt="hero image"
-              width={600}
-              height={400}
+              width={300}
+              height={200}
               priority
               className="relative z-10 drop-shadow-[0_30px_60px_rgba(11,61,145,0.20)]"
             />
