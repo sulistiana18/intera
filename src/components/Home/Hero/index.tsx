@@ -141,12 +141,10 @@ const Hero = () => {
                     Next Batch
                   </p>
 
-                  <p className="font-semibold text-black text-sm leading-tight">
-                    {batch?.name}
-                  </p>
+                 
 
-                  <p className="text-black/60 text-xs leading-tight">
-                    ({batch && getMonthName(batch.startMonth)})
+                  <p className="font-semibold text-black text-sm leading-tight">
+                    {batch && getMonthName(batch.startMonth)}
                   </p>
                 </div>
               </div>
