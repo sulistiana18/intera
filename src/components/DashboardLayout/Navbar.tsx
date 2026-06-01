@@ -60,11 +60,12 @@ export default function Navbar() {
             className="
               flex items-center gap-2 px-3 py-1.5
               text-xs font-medium
-              text-white bg-slate-900
-              border border-slate-900
+              text-white bg-red-500
+              border border-red-500
               rounded-md
-              hover:bg-white hover:text-slate-900
+              hover:bg-slate-900 hover:border-slate-900
               transition-colors duration-200
+              cursor-pointer
             "
           >
             <LogOut size={14} />

@@ -23,10 +23,10 @@ export default function Sidebar() {
 
   /* ================= MENU MAHASISWA ================= */
   const mahasiswaMenu: MenuItem[] = [
-    { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+    { label: "Profile", href: "/dashboard/profile", icon: User },
     { label: "Program", href: "/program", icon: FileText },
     { label: "Pengajuan Saya", href: "/pengajuan", icon: History },
-    { label: "Profile", href: "/profile", icon: User },
+    
   ];
 
   /* ================= MENU ADMIN ================= */
@@ -54,7 +54,7 @@ export default function Sidebar() {
 
             ${
               isActive
-                ? "bg-slate-900 text-white"
+                ? "bg-blue-900 text-white"
                 : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
             }
           `}

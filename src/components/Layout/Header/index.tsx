@@ -8,6 +8,12 @@ import SignUp from "@/components/Auth/SignUp";
 import { Icon } from "@iconify/react";
 import { useAuthStore } from "@/store/useAuthStore"; // 💡 Pastikan path store sudah sesuai
 
+import { useRouter } from "next/navigation";
+
+
+
+
+
 const menus = [
   { label: "Home", href: "#home" },
   { label: "Tentang", href: "#about" },
@@ -17,7 +23,10 @@ const menus = [
 ];
 
 const Header = () => {
+  const router = useRouter();
+
   // 🐻 Panggil state global & actions dari Zustand
+
   const {
     isSignInOpen,
     isSignUpOpen,
@@ -99,6 +108,8 @@ const Header = () => {
     };
   }, [loginSuccess]);
 
+
+
   return (
     <>
       {/* HEADER */}
@@ -151,12 +162,37 @@ const Header = () => {
                     </div>
 
                     {/* Tombol Akselerasi untuk langsung daftar program tanpa pindah halaman */}
+                    {/* MENU PROFILE */}
+                    <button
+                      onClick={() => {
+                        router.push("/dashboard/profile");
+                        setIsDropdownOpen(false);
+                      }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 text-left text-xs font-medium text-slate-600 hover:bg-sky-50 hover:text-sky-700 rounded-lg transition-colors cursor-pointer"
+                    >
+                      <Icon icon="solar:user-bold" className="text-base" />
+                      Profile
+                    </button>
+
+                    {/* MENU DAFTAR PROGRAM */}
                     <button
                       onClick={(e) => handleScroll(e, "#tentang")}
                       className="w-full flex items-center gap-2.5 px-3 py-2 text-left text-xs font-medium text-slate-600 hover:bg-sky-50 hover:text-sky-700 rounded-lg transition-colors cursor-pointer"
                     >
                       <Icon icon="solar:pen-new-square-bold" className="text-base" />
                       Daftar Program Magang
+                    </button>
+
+                    {/* MENU LAMARAN SAYA */}
+                    <button
+                      onClick={() => {
+                        setIsDropdownOpen(false);
+                        // nanti arahkan ke halaman lamaran
+                      }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 text-left text-xs font-medium text-slate-600 hover:bg-sky-50 hover:text-sky-700 rounded-lg transition-colors cursor-pointer"
+                    >
+                      <Icon icon="solar:document-text-bold" className="text-base" />
+                      Lamaran Saya
                     </button>
 
                     <hr className="border-slate-100 my-1" />
