@@ -6,6 +6,16 @@ import Signin from "@/components/Auth/SignIn";
 import SignUp from "@/components/Auth/SignUp";
 import { Icon } from "@iconify/react";
 
+const menus = [
+  { label: "Home", href: "#home" },
+  { label: "Tentang", href: "#tentang" },
+  { label: "Tahapan Seleksi", href: "#seleksi" },
+  { label: "Timeline", href: "#timeline" },
+  { label: "Formasi", href: "#formasi" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Kontak", href: "#kontak" },
+];
+
 const Header = () => {
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
@@ -15,47 +25,85 @@ const Header = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (signInRef.current && !signInRef.current.contains(event.target as Node)) {
+      if (
+        signInRef.current &&
+        !signInRef.current.contains(event.target as Node)
+      ) {
         setIsSignInOpen(false);
       }
 
-      if (signUpRef.current && !signUpRef.current.contains(event.target as Node)) {
+      if (
+        signUpRef.current &&
+        !signUpRef.current.contains(event.target as Node)
+      ) {
         setIsSignUpOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
     <>
       {/* HEADER */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200">
+        <div className="max-w-7xl mx-auto h-16 px-6 flex items-center justify-between">
 
-        <div className="flex items-center justify-between h-16 px-6">
+          {/* LEFT */}
+          <div className="flex items-center gap-12">
 
-          {/* LOGO */}
-          <Logo />
+            <Logo />
 
-          {/* AUTH BUTTON */}
+            {/* MENU */}
+            <nav className="hidden lg:flex items-center gap-7">
+              {menus.map((menu) => (
+                <a
+                  key={menu.href}
+                  href={menu.href}
+                  className="
+                    text-[13px]
+                    font-medium
+                    text-slate-600
+                    hover:text-red-700
+                    transition-colors
+                    duration-200
+                  "
+                >
+                  {menu.label}
+                </a>
+              ))}
+            </nav>
+
+          </div>
+
+          {/* RIGHT */}
           <div className="flex items-center gap-2">
 
             <button
               onClick={() => setIsSignInOpen(true)}
               className="
-                flex items-center gap-2 px-4 py-2
-                text-sm font-medium
-                text-white bg-slate-900
+                flex items-center gap-2
+                px-4 py-2
+                text-[13px]
+                font-medium
+                text-white
+                bg-slate-900
                 border border-slate-900
                 rounded-md
-
-                hover:bg-white hover:text-slate-900
-                transition-colors duration-200
+                hover:bg-white
+                hover:text-slate-900
+                transition-colors
+                duration-200
                 cursor-pointer
               "
             >
-              <Icon icon="ic:round-log-in" className="text-base" />
+              <Icon
+                icon="ic:round-log-in"
+                className="text-base"
+              />
               Sign In
             </button>
 
@@ -64,18 +112,37 @@ const Header = () => {
         </div>
       </header>
 
-      {/* ================= LOGIN MODAL ================= */}
+      {/* LOGIN MODAL */}
       {isSignInOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[999]">
           <div
             ref={signInRef}
-            className="relative bg-white w-full max-w-md rounded-md border border-slate-200 p-6"
+            className="
+              relative
+              bg-white
+              w-full
+              max-w-md
+              rounded-lg
+              border
+              border-slate-200
+              p-6
+              shadow-xl
+            "
           >
             <button
               onClick={() => setIsSignInOpen(false)}
-              className="absolute top-3 right-3 text-slate-500 hover:text-slate-900"
+              className="
+                absolute
+                top-3
+                right-3
+                text-slate-500
+                hover:text-slate-900
+              "
             >
-              <Icon icon="ic:round-close" className="text-xl" />
+              <Icon
+                icon="ic:round-close"
+                className="text-xl"
+              />
             </button>
 
             <Signin signInOpen={setIsSignInOpen} />
@@ -83,18 +150,37 @@ const Header = () => {
         </div>
       )}
 
-      {/* ================= SIGNUP MODAL ================= */}
+      {/* SIGNUP MODAL */}
       {isSignUpOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[999]">
           <div
             ref={signUpRef}
-            className="relative bg-white w-full max-w-md rounded-md border border-slate-200 p-6"
+            className="
+              relative
+              bg-white
+              w-full
+              max-w-md
+              rounded-lg
+              border
+              border-slate-200
+              p-6
+              shadow-xl
+            "
           >
             <button
               onClick={() => setIsSignUpOpen(false)}
-              className="absolute top-3 right-3 text-slate-500 hover:text-slate-900"
+              className="
+                absolute
+                top-3
+                right-3
+                text-slate-500
+                hover:text-slate-900
+              "
             >
-              <Icon icon="ic:round-close" className="text-xl" />
+              <Icon
+                icon="ic:round-close"
+                className="text-xl"
+              />
             </button>
 
             <SignUp signUpOpen={setIsSignUpOpen} />
