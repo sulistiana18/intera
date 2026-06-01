@@ -24,8 +24,8 @@ export default function Sidebar() {
   /* ================= MENU MAHASISWA ================= */
   const mahasiswaMenu: MenuItem[] = [
     { label: "Profile", href: "/dashboard/profile", icon: User },
-    { label: "Program", href: "/program", icon: FileText },
-    { label: "Pengajuan Saya", href: "/pengajuan", icon: History },
+    { label: "Program", href: "/dashboard/program", icon: FileText },
+    { label: "Pengajuan Saya", href: "/dashboard/history", icon: History },
     
   ];
 
