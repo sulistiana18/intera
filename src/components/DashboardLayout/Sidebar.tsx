@@ -24,18 +24,18 @@ export default function Sidebar() {
   /* ================= MENU MAHASISWA ================= */
   const mahasiswaMenu: MenuItem[] = [
     { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-    { label: "Program", href: "/dashboard", icon: FileText },
-    { label: "Pengajuan Saya", href: "/dashboard", icon: History },
-    { label: "Profile", href: "/dashboard", icon: User },
+    { label: "Program", href: "/program", icon: FileText },
+    { label: "Pengajuan Saya", href: "/pengajuan", icon: History },
+    { label: "Profile", href: "/profile", icon: User },
   ];
 
   /* ================= MENU ADMIN ================= */
   const adminMenu: MenuItem[] = [
-    { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-    { label: "Pengguna", href: "/dashboard", icon: Settings },
-    { label: "Program", href: "/dashboard", icon: FileText },
-    { label: "Pengajuan", href: "/dashboard", icon: History },
-    { label: "Laporan", href: "/dashboard", icon: Shield },
+    { label: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
+    { label: "Pengguna", href: "/admin/user", icon: Settings },
+    { label: "Program", href: "/admin/program", icon: FileText },
+    { label: "Pengajuan", href: "/admin/pengajuan", icon: History },
+    { label: "Laporan", href: "/admin/laporan", icon: Shield },
   ];
 
   /* ================= RENDER MENU ================= */
