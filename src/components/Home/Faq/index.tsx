@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import { useAuthStore } from "@/store/useAuthStore"; // 💡 Integrasi store untuk CTA banner
 
 interface FAQItem {
   id: number;
@@ -12,6 +13,7 @@ interface FAQItem {
 export default function FAQ() {
   // State untuk menyimpan ID faq yang sedang terbuka (null berarti semuanya tertutup)
   const [openId, setOpenId] = useState<number | null>(1); // Default membuka item pertama
+  const { user, openSignIn } = useAuthStore(); // 🐻 Baca state auth untuk tombol daftar
 
   const faqData: FAQItem[] = [
     {
@@ -44,15 +46,24 @@ export default function FAQ() {
       question: "Kenapa ada pembagian wilayah magang Riau dan DKI Jakarta?",
       answer: "Pembagian ini disesuaikan dengan kebutuhan formasi divisi operasional lapangan di Riau (teknis & eksplorasi) dan kebutuhan kantor pusat di DKI Jakarta (administrasi & strategis).",
     },
+    // 🛠️ TAMBAHAN ITEM BARU DARI GAMBAR BARU:
+    {
+      id: 7,
+      question: "Bagaimana jika pendaftar memenuhi kriteria untuk magang di wilayah Riau dan DKI Jakarta?",
+      answer: "Pelamar dipersilakan memilih salah satu kluster lokasi penempatan yang paling sesuai dengan prioritas domisili atau asal perguruan tinggi saat mengisi form pendaftaran.",
+    },
+    {
+      id: 8,
+      question: "Apakah satu orang dapat mendaftar lebih dari satu kali?",
+      answer: "Setiap pelamar hanya diperbolehkan mendaftar untuk 1 posisi formasi jabatan saja dalam satu periode gelombang rekrutmen magang yang aktif.",
+    },
   ];
 
   const toggleFAQ = (id: number) => {
-    // Jika item yang sama diklik, tutup item tersebut. Jika diklik item lain, buka item baru dan otomatis tutup yang lama.
     setOpenId(openId === id ? null : id);
   };
 
   return (
-    // ID disesuaikan menjadi "faq" agar sinkron dengan smooth scroll Header
     <section id="faq" className="py-20 bg-slate-50/50 scroll-mt-16">
       <div className="mx-auto max-w-4xl px-6">
         
@@ -101,7 +112,7 @@ export default function FAQ() {
                   </div>
                 </button>
 
-                {/* WRAPPER JAWABAN (DENGAN ANIMASI TRANSISI GRID) */}
+                {/* WRAPPER JAWABAN */}
                 <div
                   className={`grid transition-all duration-300 ease-in-out
                     ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
@@ -118,6 +129,41 @@ export default function FAQ() {
               </div>
             );
           })}
+        </div>
+
+        {/* 🛠️ TAMBAHAN CTA BANNER KUNING DI BAGIAN BAWAH */}
+        <div className="mt-16 rounded-3xl bg-gradient-to-r from-amber-400 to-amber-500 p-8 md:p-10 shadow-lg relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Aksen Hiasan Belakang */}
+          <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none" />
+          
+          <div className="relative z-10 text-center md:text-left">
+            <h3 className="text-xl md:text-2xl font-black text-slate-100 tracking-tight">
+              Ayo tunggu apa lagi?
+            </h3>
+            <p className="text-sm md:text-base font-bold text-slate-800 mt-1">
+              Raih kesempatan magang di Perusahaan Ternama
+            </p>
+          </div>
+
+          <div className="relative z-10 shrink-0">
+            {user ? (
+              <button
+                onClick={() => alert("Membuka formulir pendaftaran program...")}
+                className="flex items-center gap-2 px-6 py-3 text-xs md:text-sm font-bold text-white bg-sky-600 rounded-xl hover:bg-sky-700 transition-all shadow-md cursor-pointer group"
+              >
+                Daftar Program Sekarang
+                <Icon icon="solar:arrow-right-linear" className="text-base transition-transform group-hover:translate-x-1" />
+              </button>
+            ) : (
+              <button
+                onClick={openSignIn}
+                className="flex items-center gap-2 px-6 py-3 text-xs md:text-sm font-bold text-white bg-slate-900 rounded-xl hover:bg-slate-800 transition-all shadow-md cursor-pointer group"
+              >
+                Daftar Program Sekarang
+                <Icon icon="solar:arrow-right-linear" className="text-base transition-transform group-hover:translate-x-1" />
+              </button>
+            )}
+          </div>
         </div>
 
       </div>
