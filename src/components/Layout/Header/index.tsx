@@ -9,7 +9,7 @@ import { useAuthStore } from "@/store/useAuthStore"; // 💡 Pastikan path store
 
 const menus = [
   { label: "Home", href: "#home" },
-  { label: "Tentang", href: "#tentang" }, 
+  { label: "Tentang", href: "#about" }, 
   { label: "Tahapan Seleksi", href: "#seleksi" },
   { label: "FAQ", href: "#faq" },
   { label: "Kontak", href: "#kontak" },
