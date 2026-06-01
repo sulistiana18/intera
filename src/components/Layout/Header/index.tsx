@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 import Logo from "../Logo";
 import Signin from "@/components/Auth/SignIn";
 import SignUp from "@/components/Auth/SignUp";
@@ -9,7 +10,7 @@ import { useAuthStore } from "@/store/useAuthStore"; // 💡 Pastikan path store
 
 const menus = [
   { label: "Home", href: "#home" },
-  { label: "Tentang", href: "#about" }, 
+  { label: "Tentang", href: "#about" },
   { label: "Tahapan Seleksi", href: "#seleksi" },
   { label: "FAQ", href: "#faq" },
   { label: "Kontak", href: "#kontak" },
@@ -17,14 +18,15 @@ const menus = [
 
 const Header = () => {
   // 🐻 Panggil state global & actions dari Zustand
-  const { 
-    isSignInOpen, 
-    isSignUpOpen, 
-    user, 
-    openSignIn, 
-    closeSignIn, 
-    closeSignUp, 
-    logout 
+  const {
+    isSignInOpen,
+    isSignUpOpen,
+    user,
+    openSignIn,
+    closeSignIn,
+    closeSignUp,
+    logout,
+    loginSuccess,
   } = useAuthStore();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -36,10 +38,10 @@ const Header = () => {
   // Fungsi Handler untuk Smooth Scroll dengan Offset Tinggi Header
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
     e.preventDefault();
-    
+
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
-    
+
     if (element) {
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - 64; // Potong 64px (tinggi h-16 header)
@@ -48,7 +50,7 @@ const Header = () => {
         top: offsetPosition,
         behavior: "smooth",
       });
-      
+
       setIsDropdownOpen(false); // Tutup dropdown jika diklik lewat dropdown menu
     }
   };
@@ -70,6 +72,32 @@ const Header = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [closeSignIn, closeSignUp]);
+
+  useEffect(() => {
+    const syncSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (session?.user) {
+        loginSuccess(session.user);
+      }
+    };
+
+    syncSession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        loginSuccess(session.user);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [loginSuccess]);
 
   return (
     <>
@@ -108,9 +136,9 @@ const Header = () => {
                   <div className="w-8 h-8 rounded-full bg-sky-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">
                     {user.email?.charAt(0).toUpperCase() || "U"}
                   </div>
-                  <Icon 
-                    icon="solar:alt-arrow-down-linear" 
-                    className={`text-xs text-slate-400 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`} 
+                  <Icon
+                    icon="solar:alt-arrow-down-linear"
+                    className={`text-xs text-slate-400 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
                   />
                 </button>
 
@@ -134,7 +162,11 @@ const Header = () => {
                     <hr className="border-slate-100 my-1" />
 
                     <button
-                      onClick={() => { logout(); setIsDropdownOpen(false); }}
+                      onClick={async () => {
+                        await supabase.auth.signOut();
+                        logout();
+                        setIsDropdownOpen(false);
+                      }}
                       className="w-full flex items-center gap-2.5 px-3 py-2 text-left text-xs font-semibold text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
                     >
                       <Icon icon="solar:logout-3-bold" className="text-base" />
