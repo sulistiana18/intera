@@ -47,7 +47,7 @@ export default function About() {
             <div className="relative overflow-hidden rounded-2xl aspect-[2/1] lg:aspect-auto">
               <Image
                 src={getDataPath("/images/banner/internship-2.jpg")}
-                alt="Pertamina Hulu Rokan Workers"
+                alt="img"
                 width={700}
                 height={350}
                 className="w-full h-full object-cover"

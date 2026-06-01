@@ -1,69 +1,75 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Logo from "../Logo";
 import Signin from "@/components/Auth/SignIn";
 import SignUp from "@/components/Auth/SignUp";
 import { Icon } from "@iconify/react";
+import { useAuthStore } from "@/store/useAuthStore"; // 💡 Pastikan path store sudah sesuai
 
 const menus = [
   { label: "Home", href: "#home" },
-  { label: "Tentang", href: "#about" }, // 💡 Pastikan id di komponen About sudah berganti dari "about" ke "tentang"
+  { label: "Tentang", href: "#tentang" }, 
   { label: "Tahapan Seleksi", href: "#seleksi" },
   { label: "FAQ", href: "#faq" },
   { label: "Kontak", href: "#kontak" },
 ];
 
 const Header = () => {
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  // 🐻 Panggil state global & actions dari Zustand
+  const { 
+    isSignInOpen, 
+    isSignUpOpen, 
+    user, 
+    openSignIn, 
+    closeSignIn, 
+    closeSignUp, 
+    logout 
+  } = useAuthStore();
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const signInRef = useRef<HTMLDivElement>(null);
   const signUpRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // 🛠️ MODIFIKASI 1: Fungsi Handler untuk Smooth Scroll dengan Offset Tinggi Header
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault(); // Mencegah perilaku lompat instan bawaan browser
+  // Fungsi Handler untuk Smooth Scroll dengan Offset Tinggi Header
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
+    e.preventDefault();
     
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
     
     if (element) {
-      // Mengambil posisi elemen relatif terhadap viewport ditambah posisi gulir saat ini
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      
-      // Mengurangi tinggi header (16 = h-16 atau sekitar 64px) agar judul section tidak tertutup navbar fixed
-      const offsetPosition = elementPosition - 64; 
+      const offsetPosition = elementPosition - 64; // Potong 64px (tinggi h-16 header)
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth", // Memberikan transisi bergulir halus
+        behavior: "smooth",
       });
+      
+      setIsDropdownOpen(false); // Tutup dropdown jika diklik lewat dropdown menu
     }
   };
 
+  // Menangani klik di luar modal dan dropdown untuk menutupnya otomatis
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        signInRef.current &&
-        !signInRef.current.contains(event.target as Node)
-      ) {
-        setIsSignInOpen(false);
+      if (signInRef.current && !signInRef.current.contains(event.target as Node)) {
+        closeSignIn();
       }
-
-      if (
-        signUpRef.current &&
-        !signUpRef.current.contains(event.target as Node)
-      ) {
-        setIsSignUpOpen(false);
+      if (signUpRef.current && !signUpRef.current.contains(event.target as Node)) {
+        closeSignUp();
+      }
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () =>
-      document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [closeSignIn, closeSignUp]);
 
   return (
     <>
@@ -81,16 +87,8 @@ const Header = () => {
                 <a
                   key={menu.href}
                   href={menu.href}
-                  // 🛠️ MODIFIKASI 2: Pasang event onClick pembaca fungsi handleScroll
                   onClick={(e) => handleScroll(e, menu.href)}
-                  className="
-                    text-[13px]
-                    font-medium
-                    text-slate-600
-                    hover:text-red-700
-                    transition-colors
-                    duration-200
-                  "
+                  className="text-[13px] font-medium text-slate-600 hover:text-red-700 transition-colors duration-200"
                 >
                   {menu.label}
                 </a>
@@ -100,30 +98,61 @@ const Header = () => {
 
           {/* RIGHT */}
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsSignInOpen(true)}
-              className="
-                flex items-center gap-2
-                px-4 py-2
-                text-[13px]
-                font-medium
-                text-white
-                bg-slate-900
-                border border-slate-900
-                rounded-md
-                hover:bg-red-500
-                hover:text-white
-                transition-colors
-                duration-200
-                cursor-pointer
-              "
-            >
-              <Icon
-                icon="ic:round-log-in"
-                className="text-base"
-              />
-              Sign In
-            </button>
+            {user ? (
+              /* 💡 TAMPILAN JIKA USER SUDAH LOGIN (AVATAR DROPDOWN) */
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="flex items-center gap-2 p-1 pr-3 rounded-full border border-slate-200 hover:bg-slate-50 transition-all cursor-pointer select-none"
+                >
+                  <div className="w-8 h-8 rounded-full bg-sky-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+                    {user.email?.charAt(0).toUpperCase() || "U"}
+                  </div>
+                  <Icon 
+                    icon="solar:alt-arrow-down-linear" 
+                    className={`text-xs text-slate-400 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`} 
+                  />
+                </button>
+
+                {/* DROPDOWN MENU PANEL */}
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-56 rounded-xl border border-slate-100 bg-white p-2 shadow-xl z-50">
+                    <div className="px-3 py-2 border-b border-slate-50 mb-1">
+                      <p className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Akun Terdaftar</p>
+                      <p className="text-xs font-semibold text-slate-700 truncate mt-0.5">{user.email}</p>
+                    </div>
+
+                    {/* Tombol Akselerasi untuk langsung daftar program tanpa pindah halaman */}
+                    <button
+                      onClick={(e) => handleScroll(e, "#tentang")}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 text-left text-xs font-medium text-slate-600 hover:bg-sky-50 hover:text-sky-700 rounded-lg transition-colors cursor-pointer"
+                    >
+                      <Icon icon="solar:pen-new-square-bold" className="text-base" />
+                      Daftar Program Magang
+                    </button>
+
+                    <hr className="border-slate-100 my-1" />
+
+                    <button
+                      onClick={() => { logout(); setIsDropdownOpen(false); }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 text-left text-xs font-semibold text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                    >
+                      <Icon icon="solar:logout-3-bold" className="text-base" />
+                      Keluar Akun
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* 💡 TAMPILAN JIKA USER BELUM LOGIN (TOMBOL SIGN IN ASLI) */
+              <button
+                onClick={openSignIn}
+                className="flex items-center gap-2 px-4 py-2 text-[13px] font-medium text-white bg-slate-900 border border-slate-900 rounded-md hover:bg-red-500 hover:border-red-500 hover:text-white transition-colors duration-200 cursor-pointer"
+              >
+                <Icon icon="ic:round-log-in" className="text-base" />
+                Sign In
+              </button>
+            )}
           </div>
 
         </div>
@@ -132,37 +161,11 @@ const Header = () => {
       {/* LOGIN MODAL */}
       {isSignInOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[999]">
-          <div
-            ref={signInRef}
-            className="
-              relative
-              bg-white
-              w-full
-              max-w-md
-              rounded-lg
-              border
-              border-slate-200
-              p-6
-              shadow-xl
-            "
-          >
-            <button
-              onClick={() => setIsSignInOpen(false)}
-              className="
-                absolute
-                top-3
-                right-3
-                text-slate-500
-                hover:text-slate-900
-              "
-            >
-              <Icon
-                icon="ic:round-close"
-                className="text-xl"
-              />
+          <div ref={signInRef} className="relative bg-white w-full max-w-md rounded-lg border border-slate-200 p-6 shadow-xl">
+            <button onClick={closeSignIn} className="absolute top-3 right-3 text-slate-500 hover:text-slate-900">
+              <Icon icon="ic:round-close" className="text-xl" />
             </button>
-
-            <Signin signInOpen={setIsSignInOpen} />
+            <Signin signInOpen={closeSignIn} />
           </div>
         </div>
       )}
@@ -170,37 +173,11 @@ const Header = () => {
       {/* SIGNUP MODAL */}
       {isSignUpOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[999]">
-          <div
-            ref={signUpRef}
-            className="
-              relative
-              bg-white
-              w-full
-              max-w-md
-              rounded-lg
-              border
-              border-slate-200
-              p-6
-              shadow-xl
-            "
-          >
-            <button
-              onClick={() => setIsSignUpOpen(false)}
-              className="
-                absolute
-                top-3
-                right-3
-                text-slate-500
-                hover:text-slate-900
-              "
-            >
-              <Icon
-                icon="ic:round-close"
-                className="text-xl"
-              />
+          <div ref={signUpRef} className="relative bg-white w-full max-w-md rounded-lg border border-slate-200 p-6 shadow-xl">
+            <button onClick={closeSignUp} className="absolute top-3 right-3 text-slate-500 hover:text-slate-900">
+              <Icon icon="ic:round-close" className="text-xl" />
             </button>
-
-            <SignUp signUpOpen={setIsSignUpOpen} />
+            <SignUp signUpOpen={closeSignUp} />
           </div>
         </div>
       )}
