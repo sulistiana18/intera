@@ -31,62 +31,51 @@ const Header = () => {
   return (
     <>
       {/* HEADER */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-gray-100">
-        <div className="flex items-center justify-between h-20 px-6 w-full">
+      <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200">
+
+        <div className="flex items-center justify-between h-16 px-6">
 
           {/* LOGO */}
           <Logo />
 
-          {/* AUTH */}
+          {/* AUTH BUTTON */}
           <div className="flex items-center gap-2">
 
-            {/* SIGN IN */}
             <button
               onClick={() => setIsSignInOpen(true)}
-              className="px-4 py-2 text-sm font-medium rounded-full
-              border border-[#0033A0]/50
-              text-[#0033A0]
-              bg-[#0033A0]/5
-              hover:bg-[#0033A0]
-              hover:border-[#0033A0]
-              hover:text-white
-              transition-all duration-200
-              shadow-sm
-              cursor-pointer"
+              className="
+                flex items-center gap-2 px-4 py-2
+                text-sm font-medium
+                text-white bg-slate-900
+                border border-slate-900
+                rounded-md
+
+                hover:bg-white hover:text-slate-900
+                transition-colors duration-200
+                cursor-pointer
+              "
             >
+              <Icon icon="ic:round-log-in" className="text-base" />
               Sign In
             </button>
 
-            {/* SIGN UP */}
-            <button
-              onClick={() => setIsSignUpOpen(true)}
-              className="px-4 py-2 text-sm font-medium rounded-full
-              bg-gradient-to-r from-[#E31E24] to-[#D50000]
-              text-white
-              hover:from-[#c91a1f] hover:to-[#b80000]
-              transition-all shadow-md hover:shadow-lg
-              cursor-pointer
-              "
-            >
-              Sign Up
-            </button>
-
           </div>
+
         </div>
       </header>
 
-      {/* ================= MODAL LOGIN ================= */}
+      {/* ================= LOGIN MODAL ================= */}
       {isSignInOpen && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[999] animate-fadeIn">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[999]">
           <div
             ref={signInRef}
-            className="relative bg-white w-full max-w-md rounded-2xl p-6 shadow-xl"
+            className="relative bg-white w-full max-w-md rounded-md border border-slate-200 p-6"
           >
             <button
               onClick={() => setIsSignInOpen(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-black"
+              className="absolute top-3 right-3 text-slate-500 hover:text-slate-900"
             >
-              <Icon icon="ic:round-close" className="text-2xl" />
+              <Icon icon="ic:round-close" className="text-xl" />
             </button>
 
             <Signin signInOpen={setIsSignInOpen} />
@@ -94,18 +83,18 @@ const Header = () => {
         </div>
       )}
 
-      {/* ================= MODAL SIGNUP ================= */}
+      {/* ================= SIGNUP MODAL ================= */}
       {isSignUpOpen && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[999] animate-fadeIn">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[999]">
           <div
             ref={signUpRef}
-            className="relative bg-white w-full max-w-md rounded-2xl p-6 shadow-xl"
+            className="relative bg-white w-full max-w-md rounded-md border border-slate-200 p-6"
           >
             <button
               onClick={() => setIsSignUpOpen(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-black"
+              className="absolute top-3 right-3 text-slate-500 hover:text-slate-900"
             >
-              <Icon icon="ic:round-close" className="text-2xl" />
+              <Icon icon="ic:round-close" className="text-xl" />
             </button>
 
             <SignUp signUpOpen={setIsSignUpOpen} />
