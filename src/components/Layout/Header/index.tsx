@@ -8,10 +8,8 @@ import { Icon } from "@iconify/react";
 
 const menus = [
   { label: "Home", href: "#home" },
-  { label: "Tentang", href: "#tentang" },
+  { label: "Tentang", href: "#about" }, // 💡 Pastikan id di komponen About sudah berganti dari "about" ke "tentang"
   { label: "Tahapan Seleksi", href: "#seleksi" },
-  { label: "Timeline", href: "#timeline" },
-  { label: "Formasi", href: "#formasi" },
   { label: "FAQ", href: "#faq" },
   { label: "Kontak", href: "#kontak" },
 ];
@@ -22,6 +20,27 @@ const Header = () => {
 
   const signInRef = useRef<HTMLDivElement>(null);
   const signUpRef = useRef<HTMLDivElement>(null);
+
+  // 🛠️ MODIFIKASI 1: Fungsi Handler untuk Smooth Scroll dengan Offset Tinggi Header
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault(); // Mencegah perilaku lompat instan bawaan browser
+    
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      // Mengambil posisi elemen relatif terhadap viewport ditambah posisi gulir saat ini
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      
+      // Mengurangi tinggi header (16 = h-16 atau sekitar 64px) agar judul section tidak tertutup navbar fixed
+      const offsetPosition = elementPosition - 64; 
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth", // Memberikan transisi bergulir halus
+      });
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -54,7 +73,6 @@ const Header = () => {
 
           {/* LEFT */}
           <div className="flex items-center gap-12">
-
             <Logo />
 
             {/* MENU */}
@@ -63,6 +81,8 @@ const Header = () => {
                 <a
                   key={menu.href}
                   href={menu.href}
+                  // 🛠️ MODIFIKASI 2: Pasang event onClick pembaca fungsi handleScroll
+                  onClick={(e) => handleScroll(e, menu.href)}
                   className="
                     text-[13px]
                     font-medium
@@ -76,12 +96,10 @@ const Header = () => {
                 </a>
               ))}
             </nav>
-
           </div>
 
           {/* RIGHT */}
           <div className="flex items-center gap-2">
-
             <button
               onClick={() => setIsSignInOpen(true)}
               className="
@@ -93,8 +111,8 @@ const Header = () => {
                 bg-slate-900
                 border border-slate-900
                 rounded-md
-                hover:bg-white
-                hover:text-slate-900
+                hover:bg-red-500
+                hover:text-white
                 transition-colors
                 duration-200
                 cursor-pointer
@@ -106,7 +124,6 @@ const Header = () => {
               />
               Sign In
             </button>
-
           </div>
 
         </div>
