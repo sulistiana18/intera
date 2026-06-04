@@ -9,18 +9,18 @@ export default function About() {
     { id: 1, label: "Uang Saku", icon: "solar:wallet-money-bold" },
     { id: 2, label: "BPJS Kesehatan", icon: "solar:home-hospital-bold" },
     { id: 3, label: "BPJS Ketenagakerjaan", icon: "solar:case-minimalistic-bold" },
-    { id: 4, label: "Surat Keterangan Magang", icon: "solar:document-text-bold" },
+    { id: 4, label: "Sertifikat Kerja Praktik", icon: "solar:document-text-bold" },
   ];
 
   const requirements = [
-    "Harus kelahiran atau berdomisili atau lulusan perguruan tinggi Riau untuk lokasi magang di Provinsi Riau",
-    "Kelahiran, domisili dan asal perguruan tinggi tidak dibatasi untuk lokasi magang di Provinsi DKI Jakarta",
-    "Sudah lulus D3/D4/S1 (tidak ada batasan umur)",
-    "Memiliki Ijazah/SKL (Surat Keterangan Lulus)",
-    "Memiliki IPK minimal 3.00 (untuk lulusan luar)",
-    "Lulusan perguruan tinggi dengan minimal akreditasi B atau Baik Sekali",
-    "Lulusan program studi yang sesuai dengan formasi yang dibutuhkan",
-    "Bersedia ditempatkan diseluruh wilayah kerja PT. Pertamina Hulu Rokan, sesuai lokasi magang yang dipilih (Riau/Jakarta)",
+    "Mahasiswa aktif program D3, D4, atau S1 dari perguruan tinggi yang terakreditasi",
+    "Minimal sedang menempuh semester 5 pada saat pendaftaran",
+    "Memiliki IPK minimal 3.00 (skala 4.00)",
+    "Memiliki surat pengantar/rekomendasi Kerja Praktik dari perguruan tinggi",
+    "Bersedia melaksanakan Kerja Praktik secara penuh selama periode yang ditentukan",
+    "Memiliki kemampuan komunikasi, kerja sama tim, dan etika kerja yang baik",
+    "Program studi sesuai dengan kebutuhan dan bidang kerja yang tersedia",
+    "Bersedia mematuhi seluruh peraturan, tata tertib, dan ketentuan yang berlaku selama program Kerja Praktik"
   ];
 
   return (
