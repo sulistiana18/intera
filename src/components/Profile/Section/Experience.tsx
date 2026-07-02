@@ -21,7 +21,7 @@ export default function PengalamanSection() {
         <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-2 md:gap-6">
           <label className="text-xs font-bold text-slate-600">Nama Perusahaan <span className="text-red-500">*</span></label>
           <div className="md:col-span-3">
-            <input type="text" value={perusahaan} onChange={(e) => setPerusahaan(e.target.value)} placeholder="Contoh: PT Pertamina (Persero)" className="w-full text-xs font-medium text-slate-700 border border-slate-200 rounded-lg p-3 bg-white outline-none focus:border-blue-900" />
+            <input type="text" value={perusahaan} onChange={(e) => setPerusahaan(e.target.value)} placeholder="Contoh: PT BUMN" className="w-full text-xs font-medium text-slate-700 border border-slate-200 rounded-lg p-3 bg-white outline-none focus:border-blue-900" />
           </div>
         </div>
 

@@ -100,7 +100,7 @@ export default function CheckCertifPage() {
             <Icon icon="solar:diploma-verified-bold" className="text-3xl" />
           </div>
           <h1 className="text-xl font-bold text-slate-800">Sertifikat Kerja Prakpek</h1>
-          <p className="text-xs text-slate-500 mt-1 uppercase tracking-wider font-medium">Validasi dan unduh dokumen resmi kerja praktek Anda</p>
+          <p className="text-xs text-slate-500 mt-1 tracking-wider font-medium">Validasi dan unduh dokumen resmi kerja praktek Anda</p>
         </div>
 
         {/* Form Pencarian */}
