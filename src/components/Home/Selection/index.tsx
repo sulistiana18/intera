@@ -31,7 +31,7 @@ export default function SelectionSteps() {
     {
       step: "04",
       title: "Medical Check-Up",
-      desc: "Pemeriksaan kesehatan menyeluruh untuk memastikan kondisi fisik prima sebelum memulai program magang.",
+      desc: "Pemeriksaan kesehatan menyeluruh untuk memastikan kondisi fisik prima sebelum memulai program kerja praktek.",
       icon: "solar:heart-pulse-bold-duotone",
       color: "text-emerald-600",
       bgColor: "bg-emerald-50",

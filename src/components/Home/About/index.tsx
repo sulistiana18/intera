@@ -6,10 +6,26 @@ import { Icon } from "@iconify/react";
 
 export default function About() {
   const benefits = [
-    { id: 1, label: "Uang Saku", icon: "solar:wallet-money-bold" },
-    { id: 2, label: "BPJS Kesehatan", icon: "solar:home-hospital-bold" },
-    { id: 3, label: "BPJS Ketenagakerjaan", icon: "solar:case-minimalistic-bold" },
-    { id: 4, label: "Sertifikat Kerja Praktik", icon: "solar:document-text-bold" },
+    {
+      id: 1,
+      label: "Certificate of Completion",
+      icon: "solar:diploma-verified-bold" // Icon piagam/sertifikat resmi
+    },
+    {
+      id: 2,
+      label: "Networking",
+      icon: "solar:users-group-two-rounded-bold" // Icon sekelompok orang/relasi
+    },
+    {
+      id: 3,
+      label: "Hands-on Real World Experience",
+      icon: "solar:case-minimalistic-bold" // Sudah pas, icon koper kerja/pengalaman
+    },
+    {
+      id: 4,
+      label: "Mentorship",
+      icon: "solar:user-speak-rounded-bold" // Icon orang berbicara/membimbing
+    },
   ];
 
   const requirements = [
@@ -28,17 +44,17 @@ export default function About() {
       <div className="mx-auto max-w-7xl px-6">
         {/* 🛠️ MODIFIKASI 1: Mengubah lg:items-start menjadi lg:items-stretch agar tinggi kolom kiri & kanan sama rata */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-stretch">
-          
+
           {/* KOLOM KIRI: TENTANG & BENEFIT */}
           <div className="lg:col-span-7 flex flex-col gap-6 justify-between">
             <div>
               <h2 className="text-2xl font-bold text-sky-900 lg:text-3xl">
-                Tentang Program
+                Why Join Us?
               </h2>
               <p className="mt-4 text-[15px] leading-7 text-slate-500 text-justify">
                 Program ini bertujuan untuk memberikan pengalaman kerja kepada
                 para mahasiswa aktif D3/D4/S1 perguruan tinggi. Hal ini merupakan wujud kepedulian
-                Perusahaan terhadap mahasiswa pendidikan tinggi untuk dapat membangun kompetensi, 
+                Perusahaan terhadap mahasiswa pendidikan tinggi untuk dapat membangun kompetensi,
                 memperluas wawasan dan mendapatkan pengalaman nyata di dunia kerja.
               </p>
             </div>
@@ -127,7 +143,7 @@ export default function About() {
                     <p className="text-[13px] font-medium leading-relaxed text-slate-600">
                       {req}
                     </p>
-                    
+
                     {/* Sisipkan Tombol Formasi setelah poin ke-7 (index 6) */}
                     {index === 6 && (
                       <button className="w-fit mt-1 rounded-lg bg-amber-500 px-5 py-2 text-xs font-bold text-white hover:bg-amber-600 transition shadow-sm">

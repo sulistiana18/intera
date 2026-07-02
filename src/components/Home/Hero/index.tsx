@@ -104,7 +104,7 @@ export default function Hero() {
               Research Program
             </h1>
 
-            <p className="mt-3 text-base font-medium text-slate-600">
+            <p className="mt-3 text-base font-medium text-white">
               PT Corporate Name
             </p>
 
@@ -170,9 +170,7 @@ export default function Hero() {
               Research Program
             </h1>
 
-            <p className="mt-4 text-xl font-medium text-slate-600">
-              PT Corporate Name
-            </p>
+            
 
             <p className="mt-6 max-w-xl text-[15px] leading-8 text-slate-500">
               Gain real industry experience, contribute to meaningful

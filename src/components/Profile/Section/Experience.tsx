@@ -6,14 +6,14 @@ import { Icon } from "@iconify/react";
 export default function PengalamanSection() {
   const [perusahaan, setPerusahaan] = useState("");
   const [posisi, setPosisi] = useState("");
-  const [tipeIkatan, setTipeIkatan] = useState("Magang");
+  const [tipeIkatan, setTipeIkatan] = useState("kerja praktek");
   const [deskripsi, setDeskripsi] = useState("");
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200/80 p-6 md:p-8 shadow-sm">
       <h3 className="text-sm font-bold text-slate-800 mb-6 flex items-center gap-2">
         <Icon icon="solar:case-bold" className="text-blue-900 text-base" />
-        Riwayat Pengalaman Kerja / Magang
+        Riwayat Pengalaman Kerja / kerja praktek
       </h3>
 
       <div className="space-y-5">
@@ -38,7 +38,7 @@ export default function PengalamanSection() {
           <label className="text-xs font-bold text-slate-600">Tipe Ikatan <span className="text-red-500">*</span></label>
           <div className="md:col-span-3">
             <select value={tipeIkatan} onChange={(e) => setTipeIkatan(e.target.value)} className="w-full text-xs font-medium text-slate-700 border border-slate-200 rounded-lg p-3 bg-white outline-none focus:border-blue-900">
-              <option value="Magang">Magang (Internship)</option>
+              <option value="kerja praktek">kerja praktek (Internship)</option>
               <option value="Kontrak">Kontrak</option>
               <option value="Fulltime">Karyawan Tetap</option>
               <option value="Freelance">Lepas Waktu (Freelance)</option>

@@ -11,15 +11,13 @@ import { useAuthStore } from "@/store/useAuthStore"; // 💡 Pastikan path store
 import { useRouter } from "next/navigation";
 
 
-
-
-
 const menus = [
   { label: "Home", href: "#home" },
-  { label: "Tentang", href: "#about" },
-  { label: "Tahapan Seleksi", href: "#seleksi" },
+  { label: "About", href: "#about" },
+  { label: "How to Apply", href: "#seleksi" },
   { label: "FAQ", href: "#faq" },
-  { label: "Kontak", href: "#kontak" },
+  { label: "Contact", href: "#kontak" },
+  { label: "Certification", href: "/check-certif", external: true }, // 💡 Tambahkan proper
 ];
 
 const Header = () => {
@@ -122,16 +120,26 @@ const Header = () => {
 
             {/* MENU */}
             <nav className="hidden lg:flex items-center gap-7">
-              {menus.map((menu) => (
-                <a
-                  key={menu.href}
-                  href={menu.href}
-                  onClick={(e) => handleScroll(e, menu.href)}
-                  className="text-[13px] font-medium text-slate-600 hover:text-red-700 transition-colors duration-200"
-                >
-                  {menu.label}
-                </a>
-              ))}
+              {menus.map((menu) =>
+                menu.external ? (
+                  <button
+                    key={menu.href}
+                    onClick={() => router.push(menu.href)}
+                    className="text-[13px] font-medium text-slate-600 hover:text-red-700 transition-colors duration-200 cursor-pointer"
+                  >
+                    {menu.label}
+                  </button>
+                ) : (
+                  <a
+                    key={menu.href}
+                    href={menu.href}
+                    onClick={(e) => handleScroll(e, menu.href)}
+                    className="text-[13px] font-medium text-slate-600 hover:text-red-700 transition-colors duration-200"
+                  >
+                    {menu.label}
+                  </a>
+                )
+              )}
             </nav>
           </div>
 
@@ -180,7 +188,7 @@ const Header = () => {
                       className="w-full flex items-center gap-2.5 px-3 py-2 text-left text-xs font-medium text-slate-600 hover:bg-sky-50 hover:text-sky-700 rounded-lg transition-colors cursor-pointer"
                     >
                       <Icon icon="solar:pen-new-square-bold" className="text-base" />
-                      Daftar Program Magang
+                      Daftar Program kerja praktek
                     </button>
 
                     {/* MENU LAMARAN SAYA */}

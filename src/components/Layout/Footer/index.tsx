@@ -58,7 +58,7 @@ export default function Footer() {
             
             {/* Kartu Telepon (Kode Negara Singapura +65) */}
             <a 
-              href="tel:+6568237846" 
+              href="tel:+6285712144624" 
               className="flex items-center gap-4 bg-slate-800/50 border border-slate-700/40 p-4 rounded-xl hover:bg-slate-800 hover:border-slate-600 transition group"
             >
               <div className="p-2.5 rounded-lg bg-sky-500/10 text-sky-400 group-hover:bg-sky-500 group-hover:text-white transition duration-300">
@@ -66,13 +66,13 @@ export default function Footer() {
               </div>
               <div>
                 <p className="text-[11px] text-slate-400 uppercase tracking-wider font-medium">Hotline Office</p>
-                <p className="text-sm font-semibold text-white mt-0.5">+65 6823 7846</p>
+                <p className="text-sm font-semibold text-white mt-0.5">+62 857 1214 4624</p>
               </div>
             </a>
 
             {/* Kartu Email */}
             <a 
-              href="mailto:internship@intera.sg" 
+              href="mailto:tianasulis.st@gmail.com" 
               className="flex items-center gap-4 bg-slate-800/50 border border-slate-700/40 p-4 rounded-xl hover:bg-slate-800 hover:border-slate-600 transition group"
             >
               <div className="p-2.5 rounded-lg bg-red-500/10 text-red-400 group-hover:bg-red-500 group-hover:text-white transition duration-300">
@@ -80,7 +80,7 @@ export default function Footer() {
               </div>
               <div>
                 <p className="text-[11px] text-slate-400 uppercase tracking-wider font-medium">Official Email</p>
-                <p className="text-sm font-semibold text-white mt-0.5">internship@intera.sg</p>
+                <p className="text-sm font-semibold text-white mt-0.5">hrd@intera.id</p>
               </div>
             </a>
           </div>

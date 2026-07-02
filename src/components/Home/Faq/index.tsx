@@ -18,44 +18,45 @@ export default function FAQ() {
   const faqData: FAQItem[] = [
     {
       id: 1,
-      question: "Berapa lama program magang ini dilaksanakan?",
-      answer: "Pendaftar yang dinyatakan lolos akan mengikuti program magang secara intensif selama kurang lebih 6 bulan penuh dengan evaluasi berkala.",
+      question: "Berapa lama program kerja praktek ini dilaksanakan?",
+      answer: "Pendaftar yang dinyatakan lolos akan mengikuti program kerja praktek selama kurang lebih 2 bulan penuh.",
     },
     {
       id: 2,
-      question: "Apakah pendaftar boleh mahasiswa aktif / belum lulus?",
-      answer: "Program ini dikhususkan untuk lulusan D3/D4/S1 (Fresh Graduate) yang sudah memiliki Ijazah atau minimal Surat Keterangan Lulus (SKL) saat pendaftaran dibuka.",
+      question: "Siapa saja yang boleh mendaftar program kerja praktek?",
+      answer: "Program ini dikhususkan bagi mahasiswa aktif jenjang D3, D4, atau S1 minimal semester 5 dari perguruan tinggi yang terakreditasi.",
     },
     {
       id: 3,
-      question: "Apakah ada batasan usia pendaftaran?",
-      answer: "Tidak ada batasan usia asalkan pelamar memenuhi kualifikasi strata pendidikan minimum dan persyaratan berkas yang ditentukan.",
+      question: "Apa saja tipe program yang tersedia di Intera?",
+      answer: "Intera menyediakan 2 tipe program kerja praktek dan penelitian tugas akhir.",
     },
     {
       id: 4,
-      question: "Dimana saja wilayah magang dilaksanakan?",
-      answer: "Pelaksanaan magang bertempat di wilayah operasional kerja perusahaan, yang terbagi dalam kluster Provinsi Riau dan kluster Provinsi DKI Jakarta.",
+      question: "Apa itu kerja praktek?",
+      answer: "Kerja praktek adalah salah satu bentuk kegiatan praktik industri yang memberikan kesempatan untuk mendapatkan pengalaman kerja, berkarya, dan berperan aktif dalam project yang diselenggarakan oleh perusahaan.",
     },
     {
       id: 5,
-      question: "Apakah pendaftar dapat memilih lokasi penempatan magang?",
-      answer: "Ya, pelamar dapat memilih lokasi penempatan magang yang diinginkan pada saat mengisi formulir pendaftaran berdasarkan formasi lowongan yang tersedia.",
+      question: "Apakah itu Penelitian Tugas Akhir?",
+      answer: "Penelitian Tugas Akhir adalah kegiatan penelitian yang dilakukan oleh mahasiswa untuk menyelesaikan tugas akhir mereka, biasanya dalam bentuk skripsi atau thesis.",
     },
     {
       id: 6,
-      question: "Kenapa ada pembagian wilayah magang Riau dan DKI Jakarta?",
-      answer: "Pembagian ini disesuaikan dengan kebutuhan formasi divisi operasional lapangan di Riau (teknis & eksplorasi) dan kebutuhan kantor pusat di DKI Jakarta (administrasi & strategis).",
+      question: "Kapan saja periode Kerja Praktek berlangsung?",
+      answer: "Periode Kerja Praktek biasanya berlangsung 4 kali dalam 1 tahun, yaitu pada bulan Januari-Februari, April-Mei, Juli-Agustus, dan Oktober-November. Pendaftar dapat memilih periode yang sesuai dengan jadwal akademik mereka.",
     },
     // 🛠️ TAMBAHAN ITEM BARU DARI GAMBAR BARU:
     {
+      // pertanyaan apakah boleh mendaftar lebih dari1 kali
       id: 7,
-      question: "Bagaimana jika pendaftar memenuhi kriteria untuk magang di wilayah Riau dan DKI Jakarta?",
-      answer: "Pelamar dipersilakan memilih salah satu kluster lokasi penempatan yang paling sesuai dengan prioritas domisili atau asal perguruan tinggi saat mengisi form pendaftaran.",
+      question: "Apakah pelamar dapat mendaftar lebih dari satu periode?",
+      answer: "Setiap pelamar hanya dapat mendaftar untuk satu periode dalam satu waktu. Namun, jika Anda belum berhasil atau gagal lolos pada periode sebelumnya, Anda diperbolehkan untuk mendaftar kembali di periode selanjutnya.",
     },
     {
       id: 8,
-      question: "Apakah satu orang dapat mendaftar lebih dari satu kali?",
-      answer: "Setiap pelamar hanya diperbolehkan mendaftar untuk 1 posisi formasi jabatan saja dalam satu periode gelombang rekrutmen magang yang aktif.",
+      question: "Apakah satu orang dapat mendaftar lebih dari satu kali dalam 1 periode pendaftaran yang sama?",
+      answer: "Setiap pelamar hanya diperbolehkan mendaftar untuk 1 posisi formasi jabatan saja dalam satu periode gelombang rekrutmen yang aktif.",
     },
   ];
 
@@ -141,7 +142,7 @@ export default function FAQ() {
               Ayo tunggu apa lagi?
             </h3>
             <p className="text-sm md:text-base font-bold text-slate-800 mt-1">
-              Raih kesempatan magang di Perusahaan Ternama
+              Raih kesempatan kerja praktek di Perusahaan Ternama
             </p>
           </div>
 
