@@ -96,7 +96,7 @@ export default function Footer() {
           </p>
           <p>
             Developed by{" "}
-            <a href="#" className="text-amber-500 hover:underline">
+            <a href="https://sulistiana.site" className="text-amber-500 hover:underline" target="_blank">
               Intera Tech Dev Team
             </a>
           </p>
